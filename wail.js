@@ -282,6 +282,15 @@ const OP_MISC                = 0xfc;
 const OP_SIMD                = 0xfd;
 const OP_ATOMIC              = 0xfe;
 
+//exception handling fix
+const OP_try_table              = 0x1f;
+const OP_throw                  = 0x08;
+const OP_throw_ref              = 0x0a;
+const OP_catch                  = 0x00;
+const OP_catch_ref              = 0x01;
+const OP_catch_all              = 0x02;
+const OP_catch_all_ref          = 0x03;
+
 const ARG_I32_TRUNC_SAT_F32_S = 0x00;
 const ARG_I32_TRUNC_SAT_F32_U = 0x01;
 const ARG_I32_TRUNC_SAT_F64_S = 0x02;
@@ -3938,6 +3947,13 @@ class WailParser extends BufferReader {
                     case SIMD_I32X4_EXTADD_PAIRWISE_I16X8_S:
                     case SIMD_I32X4_EXTADD_PAIRWISE_I16X8_U:
                         break;
+                    case OP_try_table:
+                    case OP_throw:
+                    case OP_throw_ref:
+                    case OP_catch:
+                    case OP_catch_ref:
+                    case OP_catch_all:
+                    case OP_catch_all_ref:
                     case SIMD_V128_LOAD:
                     case SIMD_V128_LOAD8X8_S:
                     case SIMD_V128_LOAD8X8_U:
